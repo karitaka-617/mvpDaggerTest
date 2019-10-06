@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MvpDaggerTest</string>
+    <string name="test">test</string>
 </resources>
