@@ -1,5 +1,6 @@
 package com.example.mvpdaggertest.data
 
+import android.util.Log
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
