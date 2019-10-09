@@ -2,11 +2,14 @@ package com.example.mvpdaggertest.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.mvpdaggertest.CustomApplication
 import com.example.mvpdaggertest.R
 import com.example.mvpdaggertest.data.GitRepository
 import com.example.mvpdaggertest.util.replaceFragmentInActivity
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+    @Inject lateinit var gitRepository: GitRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +21,7 @@ class MainActivity : AppCompatActivity() {
                 replaceFragmentInActivity(it, R.id.contentFrame)
             }
 
-        val gitRepository = GitRepository.getInstance()
+        (application as? CustomApplication)?.appComponent?.inject(this)
 
         MainPresenter(
             gitRepository, mainFragment
