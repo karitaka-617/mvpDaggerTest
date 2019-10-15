@@ -1,19 +1,17 @@
 package com.example.mvpdaggertest
 
 import android.app.Application
-import com.example.mvpdaggertest.main.DaggerMainActivityComponent
-import com.example.mvpdaggertest.main.MainActivityComponent
-import com.example.mvpdaggertest.main.MainActivityModule
 
 class CustomApplication: Application() {
-    lateinit var appComponent: MainActivityComponent
+    lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
 
-        appComponent = DaggerMainActivityComponent
+        appComponent = DaggerAppComponent
             .builder()
-            .mainActivityModule(MainActivityModule())
             .build()
+
+        appComponent.inject(this)
     }
 }

@@ -11,6 +11,6 @@ class MainActivityModule {
     @Singleton
     @Provides
     fun provideGitRepository(): GitRepository{
-        return GitRepository
+        return GitRepository.getInstance()
     }
 }

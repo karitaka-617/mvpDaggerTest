@@ -21,7 +21,9 @@ class MainActivity : AppCompatActivity() {
                 replaceFragmentInActivity(it, R.id.contentFrame)
             }
 
-        (application as? CustomApplication)?.appComponent?.inject(this)
+        var app = (application as? CustomApplication)?.appComponent
+        var actComponent = app!!.plus(MainActivityModule())
+        actComponent.inject(this)
 
         MainPresenter(
             gitRepository, mainFragment

@@ -1,10 +1,10 @@
 package com.example.mvpdaggertest.main
 
-import dagger.Component
+import dagger.Subcomponent
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [MainActivityModule::class])
+@Subcomponent(modules = [MainActivityModule::class])
 interface MainActivityComponent {
     fun inject(activity: MainActivity)
 }
