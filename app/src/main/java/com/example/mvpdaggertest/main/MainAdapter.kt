@@ -9,11 +9,11 @@ import com.example.mvpdaggertest.R
 import com.example.mvpdaggertest.data.Data
 import kotlinx.android.synthetic.main.git_item_list.view.*
 
-class MainAdapter(context: Context, data: List<Data>): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
+class MainAdapter(context: Context, data: List<Data>, listener: MainFragment.OnFragmentInteractionListener): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
     private var mInflater: LayoutInflater = LayoutInflater.from(context)
     private var mData: List<Data> = data
     //    private var mContext: Context = context
-//    private var mListener: OnRecyclerListener = listener
+    private var mListener: MainFragment.OnFragmentInteractionListener = listener
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): RecyclerView.ViewHolder {
         // 表示するレイアウトを設定
@@ -28,7 +28,7 @@ class MainAdapter(context: Context, data: List<Data>): RecyclerView.Adapter<Recy
 
         // クリック処理
         viewHolder.itemView.list_liner.setOnClickListener { _ ->
-//            mListener.onRecyclerClicked(v, viewHolder.layoutPosition,mData[i].owner.login,mData[i].name)
+            mListener.onStartMain2()
         }
     }
 
