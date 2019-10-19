@@ -53,8 +53,3 @@ data class User(
     val type: String,
     val site_admin: Boolean
 )
-
-data class Test(
-    val name: String,
-    val id: String
-)

@@ -8,7 +8,5 @@ interface MainContract {
     interface MainView : BaseView<MainPresenter> {
         fun showGitData(data: List<Data>)
     }
-    interface MainPresenter : BasePresenter {
-
-    }
+    interface MainPresenter : BasePresenter {}
 }

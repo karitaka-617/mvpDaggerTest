@@ -18,10 +18,9 @@ class MainFragment : Fragment(), MainContract.MainView {
     private lateinit var mAdapter: MainAdapter
     override lateinit var presenter: MainContract.MainPresenter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
+    companion object {
+        @JvmStatic
+        fun newInstance() = MainFragment()
     }
 
     override fun onCreateView(
@@ -59,11 +58,6 @@ class MainFragment : Fragment(), MainContract.MainView {
     }
 
     interface OnFragmentInteractionListener {
-        fun onStartMain2()
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = MainFragment()
+        fun onStartMain2(projectName: String)
     }
 }

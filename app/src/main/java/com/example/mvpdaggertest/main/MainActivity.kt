@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.example.mvpdaggertest.CustomApplication
 import com.example.mvpdaggertest.R
 import com.example.mvpdaggertest.data.GitRepository
-import com.example.mvpdaggertest.gitdata.MainActivity2
+import com.example.mvpdaggertest.detail.DetailActivity
 import com.example.mvpdaggertest.util.replaceFragmentInActivity
 import javax.inject.Inject
 
@@ -35,8 +35,9 @@ class MainActivity :
         )
     }
 
-    override fun onStartMain2() {
-        val intent = Intent(this@MainActivity, MainActivity2::class.java)
+    override fun onStartMain2(projectName: String) {
+        val intent = Intent(this@MainActivity, DetailActivity::class.java)
+        intent.putExtra("projectName",projectName)
         startActivity(intent)
     }
 }

@@ -28,7 +28,7 @@ class MainAdapter(context: Context, data: List<Data>, listener: MainFragment.OnF
 
         // クリック処理
         viewHolder.itemView.list_liner.setOnClickListener { _ ->
-            mListener.onStartMain2()
+            mListener.onStartMain2(mData[i].name)
         }
     }
 
