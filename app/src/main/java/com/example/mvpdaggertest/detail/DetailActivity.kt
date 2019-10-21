@@ -10,7 +10,8 @@ import javax.inject.Inject
 
 class DetailActivity : AppCompatActivity() {
 
-    @Inject lateinit var gitRepository: GitRepository
+    lateinit var gitRepository: GitRepository
+    @Inject lateinit var detailFragment: DetailFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,16 +19,13 @@ class DetailActivity : AppCompatActivity() {
 
         val intent = intent.getStringExtra("projectName")
 
-        val detailFragment = supportFragmentManager
-            .findFragmentById(R.id.container) as DetailFragment?
-            ?: DetailFragment.newInstance().also {
-                replaceFragmentInActivity(it, R.id.container)
-            }
+        (application as? CustomApplication)!!.appComponent
+            .plus(DetailActivityModule())
+            .inject(this)
 
-        val app = (application as? CustomApplication)?.appComponent
-        val component = app!!.plus(DetailActivityModule())
-        component.inject(this)
+        gitRepository = (application as? CustomApplication)!!.gitRepository
 
+        replaceFragmentInActivity(detailFragment, R.id.container)
         DetailPresenter(gitRepository,detailFragment,intent!!)
     }
 

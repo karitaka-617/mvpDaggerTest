@@ -1,16 +1,16 @@
 package com.example.mvpdaggertest
 
+import android.util.Log
 import com.example.mvpdaggertest.data.GitRepository
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 @Module
 class BaseModule {
 
-    @Singleton
     @Provides
     fun provideGitRepository(): GitRepository{
+        Log.d("dagger2","test")
         return GitRepository.getInstance()
     }
 }

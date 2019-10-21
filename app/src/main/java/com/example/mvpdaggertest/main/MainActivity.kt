@@ -14,21 +14,20 @@ class MainActivity :
     AppCompatActivity(),
     MainFragment.OnFragmentInteractionListener
 {
-    @Inject lateinit var gitRepository: GitRepository
+    lateinit var gitRepository: GitRepository
+    @Inject lateinit var mainFragment: MainFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mainFragment = supportFragmentManager
-            .findFragmentById(R.id.contentFrame) as MainFragment?
-            ?: MainFragment.newInstance().also {
-                replaceFragmentInActivity(it, R.id.contentFrame)
-            }
+        (application as? CustomApplication)!!.appComponent
+            .plus(MainActivityModule())
+            .inject(this)
 
-        val app = (application as? CustomApplication)?.appComponent
-        val actComponent = app!!.plus(MainActivityModule())
-        actComponent.inject(this)
+        gitRepository = (application as? CustomApplication)!!.gitRepository
+
+        replaceFragmentInActivity(mainFragment,R.id.contentFrame)
 
         MainPresenter(
             gitRepository, mainFragment
